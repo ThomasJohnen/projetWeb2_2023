@@ -1,0 +1,59 @@
+@baseUrl = http://localhost:3000
+
+### get all produits
+GET {{baseUrl}}/produits/
+
+### create a new product
+POST {{baseUrl}}/produits/
+Content-Type: application/json
+
+{
+    "nom": "user3",
+    "entree": 4,
+    "sortie": 3,
+    "zone": 1
+}
+
+
+### delete a product by id
+DELETE {{baseUrl}}/produits/7
+
+
+### update a product with entree
+PATCH {{baseUrl}}/produits/7
+Content-Type: application/json
+
+{
+    "entree": 2
+}
+
+### update a product with sortie
+PATCH {{baseUrl}}/produits/7
+Content-Type: application/json
+
+{
+    "sortie": 2
+}
+
+
+### update all a product
+PATCH {{baseUrl}}/produits/7
+Content-Type: application/json
+
+{
+    "nom" : "test",
+    "entree" : 2,
+    "sortie" : 1,
+    "zone" : 1
+}
+
+### update all a product fail
+PATCH {{baseUrl}}/produits/7
+Content-Type: application/json
+
+{
+    "nom" : "test",
+    "entree" : 2,
+    "sortie" : 1,
+    "zone" : 2
+}

@@ -1,0 +1,23 @@
+# ignore all node_modules folders and nested folders & files
+node_modules
+# ignore the specific VS Code configuration parameters
+.vscode
+# ignore the specific packages versions installed by the developper
+package-lock.json
+# ignore the development environment variables (if any)
+.env
+# ignore all the JSON data files within data directories
+**/data/*.json
+# ignore all dist directories files (and subdirectories) from .gitignore
+dist/*
+# ignore all existing solutions
+module*
+# but (re)include specific solutions directory files
+!module1
+!module2
+!module3
+!module4
+!module5
+!module6
+!module7
+!module8

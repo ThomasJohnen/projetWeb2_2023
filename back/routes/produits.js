@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllProduits, createProduit, deleteProduct, modifyEntreeProduit, modifySortieProduit, modifyAllProduit } = require('../models/produits');
+const { getAllProduits, getProduitById, createProduit, deleteProduct, modifyEntreeProduit, modifySortieProduit, modifyAllProduit } = require('../models/produits');
 
 const router = express.Router();
 
@@ -8,6 +8,22 @@ router.get("/", (req, res) => {
     const produits = getAllProduits();
 
     return res.json(produits);
+});
+
+
+router.get("/:id", (req, res) => {
+    
+        const id = req?.params?.id;
+    
+        const idInt = parseInt(id, 10);
+    
+        const produit = getProduitById(idInt);
+    
+        if(produit === null){
+            return res.status(404).json({ error: "produit non trouvé" });
+        }
+    
+        return res.json(produit);
 });
 
 

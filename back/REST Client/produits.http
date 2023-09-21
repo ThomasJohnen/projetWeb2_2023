@@ -57,3 +57,7 @@ Content-Type: application/json
     "sortie" : 1,
     "zone" : 2
 }
+
+
+### get produit by id
+GET {{baseUrl}}/produits/3

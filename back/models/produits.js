@@ -100,6 +100,16 @@ function modifyAllProduit(id, nom, entree, sortie, zone){
     return produitToUpdate;
 };
 
+function getProduitById(id){
+    const produits = parse(filePath, PRODUITS);
+    const position = produits.findIndex(produit => produit.id === id);
+    if(position < 0){
+        return null;
+    }
+    const produit = produits[position];
+    return produit;
+};
+
 module.exports = {
     getAllProduits,
     createProduit,
@@ -107,4 +117,5 @@ module.exports = {
     modifyEntreeProduit,
     modifySortieProduit,
     modifyAllProduit,
+    getProduitById,
 };

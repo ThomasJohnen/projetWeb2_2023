@@ -3,6 +3,9 @@ import minus from "../../assets/minus.svg";
 import plus from "../../assets/plus.svg";
 import edit from "../../assets/edit.svg";
 
+
+// le modal et la balise enveloppante qui sera dans le main
+
 const homePage = `
     <div class="modal fade" id="modalProduit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -16,7 +19,6 @@ const homePage = `
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -34,7 +36,8 @@ const HomePage = () => {
     displayProduit();
 };
 
-async function displayProduit(){   
+async function displayProduit(){ 
+    // on récupère tout les produits dans l'api 
     const response = await fetch(`/api/produits/`);
 
     const principal = document.querySelector('#principal');
@@ -44,6 +47,7 @@ async function displayProduit(){
     
     const produits = await response.json();
     
+    // on affiche les produits dans la page
     produits.forEach(produit => {
         const infoProduit = `
             <div class="encart produit card col-md-3 col-sm-6 m-3 bg-primary text-white" id="${produit.id}">
@@ -69,10 +73,41 @@ async function displayProduit(){
     // Ajoutez un événement clic pour les boutons modal
     const modalButtonsMinus = document.querySelectorAll('.btModalMinus');
     modalButtonsMinus.forEach(button => {
-        button.addEventListener('click',  () =>{
+        button.addEventListener('click', async () =>{
             const productId = button.getAttribute('data-id'); // Récupérez la valeur du data-id
+            const produit = await getProduitById(productId);
             const modalContent = document.querySelector('#modalContent');
-            modalContent.textContent = `ID du produit : ${productId}`; // Affichez la valeur dans le modal
+            const form = `
+                <form id="minusForm">
+                    <div class="mb-3">
+                        <label for="quantiteARetirer" class="form-label">Quantité à retirer pour le produit : ${produit.nom}</label>
+                        <input type="number" class="form-control" id="quantite" placeholder ="quantité en zone actuellement : ${produit.zone}">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="minusSubmit" data-id="${produit.id}">Submit</button>
+                </form>
+                `;
+            modalContent.innerHTML = form; // Affichez la valeur dans le modal
+            const minusForm = document.querySelector('#minusForm');
+            minusForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const id = document.querySelector("#minusSubmit").getAttribute("data-id");
+                const quantite = document.querySelector('#quantite').value;
+                const responseSubmitMinus = fetch(`/api/produits/${id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "sortie": quantite
+                    })
+                });
+                if(!responseSubmitMinus.ok){
+                    return null;
+                }
+                const produitupdated = response.json();
+                window.location.reload();
+                return produitupdated;
+            });
         });
     });
     // Ajoutez un événement clic pour les boutons modal
@@ -93,6 +128,15 @@ async function displayProduit(){
             modalContent.textContent = `ID du produit : ${productId}`; // Affichez la valeur dans le modal
         });
     });
+};
+
+async function getProduitById(id){
+    const response = await fetch(`/api/produits/${id}`);
+    if(!response.ok){
+        return null;
+    }
+    const produit = response.json();
+    return produit;
 };
 
 export default HomePage;

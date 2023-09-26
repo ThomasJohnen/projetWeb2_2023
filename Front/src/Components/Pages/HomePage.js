@@ -2,6 +2,7 @@ import { clearPage } from "../../utils/render";
 import minus from "../../assets/minus.svg";
 import plus from "../../assets/plus.svg";
 import edit from "../../assets/edit.svg";
+import Navigate from "../Router/Navigate";
 
 
 // le modal et la balise enveloppante qui sera dans le main
@@ -88,11 +89,11 @@ async function displayProduit(){
                 `;
             modalContent.innerHTML = form; // Affichez la valeur dans le modal
             const minusForm = document.querySelector('#minusForm');
-            minusForm.addEventListener('submit', (e) => {
+            minusForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const id = document.querySelector("#minusSubmit").getAttribute("data-id");
                 const quantite = document.querySelector('#quantite').value;
-                const responseSubmitMinus = fetch(`/api/produits/${id}`, {
+                const responseSubmitMinus = await fetch(`/api/produits/${id}`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json'
@@ -104,8 +105,8 @@ async function displayProduit(){
                 if(!responseSubmitMinus.ok){
                     return null;
                 }
-                const produitupdated = response.json();
-                window.location.reload();
+                const produitupdated = await response.json();
+                Navigate('/');
                 return produitupdated;
             });
         });

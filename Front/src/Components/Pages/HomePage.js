@@ -2,7 +2,6 @@ import { clearPage } from "../../utils/render";
 import minus from "../../assets/minus.svg";
 import plus from "../../assets/plus.svg";
 import edit from "../../assets/edit.svg";
-import Navigate from "../Router/Navigate";
 
 
 // le modal et la balise enveloppante qui sera dans le main
@@ -84,7 +83,7 @@ async function displayProduit(){
                         <label for="quantiteARetirer" class="form-label">Quantité à retirer pour le produit : ${produit.nom}</label>
                         <input type="number" class="form-control" id="quantite" placeholder ="quantité en zone actuellement : ${produit.zone}">
                     </div>
-                    <button type="submit" class="btn btn-primary" id="minusSubmit" data-id="${produit.id}">Submit</button>
+                    <button type="submit" class="btn btn-primary" id="minusSubmit" data-id="${produit.id}" data-bs-dismiss="modal">Submit</button>
                 </form>
                 `;
             modalContent.innerHTML = form; // Affichez la valeur dans le modal
@@ -93,21 +92,27 @@ async function displayProduit(){
                 e.preventDefault();
                 const id = document.querySelector("#minusSubmit").getAttribute("data-id");
                 const quantite = document.querySelector('#quantite').value;
-                const responseSubmitMinus = await fetch(`/api/produits/${id}`, {
+
+                const option = {
                     method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
                     body: JSON.stringify({
                         "sortie": quantite
-                    })
-                });
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+                
+                const responseSubmitMinus = await fetch(`/api/produits/${id}`, option);
+
                 if(!responseSubmitMinus.ok){
                     return null;
                 }
-                const produitupdated = await response.json();
-                Navigate('/');
-                return produitupdated;
+
+                const produitUpdated = await responseSubmitMinus.json();
+
+                HomePage();
+                return produitUpdated;
             });
         });
     });

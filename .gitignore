@@ -8,14 +8,4 @@ package-lock.json
 .env
 # ignore all dist directories files (and subdirectories) from .gitignore
 dist/*
-# ignore all existing solutions
-module*
-# but (re)include specific solutions directory files
-!module1
-!module2
-!module3
-!module4
-!module5
-!module6
-!module7
-!module8
+

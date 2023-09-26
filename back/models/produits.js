@@ -79,7 +79,7 @@ function modifySortieProduit(id, sortie){
     return produitToUpdate;
 };
 
-function modifyAllProduit(id, nom, entree, sortie, zone){
+function modifyAllProduit(id, entree, sortie, zone){
 
     const produits = parse(filePath, PRODUITS);
     const position = produits.findIndex(produit => produit.id === id);
@@ -90,10 +90,6 @@ function modifyAllProduit(id, nom, entree, sortie, zone){
     produitToUpdate.entree = entree;
     produitToUpdate.sortie = sortie;
     produitToUpdate.zone = zone;
-    if((produitToUpdate.zone - sortie) < 0){
-        return "400";
-    }
-    produitToUpdate.nom = nom;
     produits[position] = produitToUpdate;
 
     serialize(filePath, produits);

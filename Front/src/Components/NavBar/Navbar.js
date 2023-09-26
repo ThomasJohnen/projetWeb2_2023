@@ -11,8 +11,8 @@ import { Navbar as BootstrapNavbar } from 'bootstrap';
 const Navbar = () => {
   const navbarWrapper = document.querySelector('#navbarWrapper');
   const navbar = `
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
+  <nav id="navBar" class="navbar navbar-expand-lg navbar-light bg-light">
+        <div id="backNav" class="container-fluid">
           <a class="navbar-brand" href="#" data-uri="/">Logiciel de Produits GSK</a>
           <button
             class="navbar-toggler"
@@ -28,8 +28,13 @@ const Navbar = () => {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#" data-uri="/">Home</a>
-              </li>                         
+                <a class="nav-link colorNav" aria-current="page" href="#" data-uri="/">Accueil</a>
+              </li>
+              <li class="nav-item">
+                <a id="buttonCanvas" class="colorNav" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                  Ajouter un produit
+                </a>
+              </li>                       
             </ul>
           </div>
         </div>

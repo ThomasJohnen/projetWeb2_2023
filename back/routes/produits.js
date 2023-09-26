@@ -79,17 +79,15 @@ router.patch("/:id", (req, res) =>{
 
     const entree = req?.body?.entree
     const sortie = req?.body?.sortie
-    const nom = req?.body?.nom
     const zone = req?.body?.zone
 
-    if(nom != null && entree != null && zone != null && sortie != null){
+    if(entree != null && zone != null && sortie != null){
         const entreeInt = parseInt(entree, 10);
         const sortieInt = parseInt(sortie, 10);
         const zoneInt = parseInt(zone, 10);
         if((entreeInt - sortieInt) !== zoneInt) return res.sendStatus(400);
         if(sortieInt < 0) return res.sendStatus(400);
-        if(nom === " ") return res.sendStatus(400);
-        const produit = modifyAllProduit(idInt, nom, entreeInt, sortieInt, zoneInt);
+        const produit = modifyAllProduit(idInt, entreeInt, sortieInt, zoneInt);
         if(produit === null){
             return res.status(404).json({ error: "Ressource non trouvée à l'index" });
             }

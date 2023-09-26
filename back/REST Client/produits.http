@@ -41,9 +41,8 @@ PATCH {{baseUrl}}/produits/7
 Content-Type: application/json
 
 {
-    "nom" : "test",
-    "entree" : 2,
-    "sortie" : 1,
+    "entree" : 3,
+    "sortie" : 2,
     "zone" : 1
 }
 
@@ -52,7 +51,6 @@ PATCH {{baseUrl}}/produits/7
 Content-Type: application/json
 
 {
-    "nom" : "test",
     "entree" : 2,
     "sortie" : 1,
     "zone" : 2

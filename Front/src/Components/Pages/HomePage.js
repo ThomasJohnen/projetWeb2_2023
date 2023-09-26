@@ -184,14 +184,14 @@ async function displayProduit(){
                     <input type="number" class="form-control" id="quantiteZone" placeholder ="Indiquer la quantité en zone">
                 </div>
                 <p>Rappelez vous que la quantité en zone doit être égale à la différence entre les entrées et les sorties.</p>
-                <button type="submit" class="btn btn-primary" id="plusSubmit" data-id="${produit.id}" data-bs-dismiss="modal">Modifier</button>
+                <button type="submit" class="btn btn-primary" id="EditSubmit" data-id="${produit.id}" data-bs-dismiss="modal">Modifier</button>
             </form>
             `;
             modalContent.innerHTML = form; // Affichez la valeur dans le modal
             const modifyForm = document.querySelector('#modifyForm');
             modifyForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                const id = document.querySelector("#modifyForm").getAttribute("data-id");
+                const id = document.querySelector("#EditSubmit").getAttribute("data-id");
                 const entree = document.querySelector('#quantiteEntree').value;
                 const sortie = document.querySelector('#quantiteSortie').value;
                 const zone = document.querySelector('#quantiteZone').value;

@@ -6,7 +6,7 @@ const pageAddForm = `
             <div class="col-md-6">
                 <div class="card" id="shadow">
                     <div class="card-header">
-                        <h3 class="card-title">Formulaire de Suppression</h3>
+                        <h3 class="card-title">Formulaire de création</h3>
                     </div>
                     <div class="card-body">
                         <form id="addForm">
@@ -28,7 +28,7 @@ const pageAddForm = `
                         </div>
                         <button type="submit" class="btn btn-primary">Ajouter</button>
                         </form>
-                        <div id="resultat"></div>
+                        <div id="resultat" class="pt-3 text-center"></div>
                     </div>
                 </div>
             </div>
@@ -65,10 +65,10 @@ const pageAddForm = `
         const response = await fetch("/api/produits/", option);
         const resultat = document.querySelector("#resultat");
         if (!response.ok) {
-            resultat.innerHTML = `<span class="error-message">Impossible d'ajouter le produit</span>`;
+            resultat.innerHTML = `<span class="error-message" style="color: red">Impossible d'ajouter le produit</span>`;
         } else {
             const createdProduct = await response.json();
-            resultat.innerHTML = `<span class="success-message"> ${createdProduct.nom} a bien été ajouté</span>`;
+            resultat.innerHTML = `<span class="success-message" style="color: green"> ${createdProduct.nom} a bien été ajouté</span>`;
         }
 
         });

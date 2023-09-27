@@ -8,6 +8,7 @@ const PRODUITS = [];
 function getAllProduits(){
     const produits = parse(filePath, PRODUITS);
 
+    produits.sort((a, b) => a.nom.localeCompare(b.nom));
     return produits;
 };
 

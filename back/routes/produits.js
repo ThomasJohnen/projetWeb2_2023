@@ -47,9 +47,7 @@ router.post("/", (req, res) => {
         return res.sendStatus(400);
     }
 
-    if(entreeInt === 0 || sortieInt === 0 || zoneInt === 0){
-        return res.sendStatus(400);
-    }
+
 
     const produit = createProduit(nom, entreeInt, sortieInt, zoneInt);
 

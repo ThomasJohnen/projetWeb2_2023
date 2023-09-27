@@ -8,7 +8,7 @@ POST {{baseUrl}}/produits/
 Content-Type: application/json
 
 {
-    "nom": "user3",
+    "nom": "Test",
     "entree": 4,
     "sortie": 3,
     "zone": 1

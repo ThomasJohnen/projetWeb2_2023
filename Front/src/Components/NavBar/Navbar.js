@@ -13,7 +13,7 @@ const Navbar = () => {
   const navbar = `
   <nav id="navBar" class="navbar navbar-expand-lg navbar-light bg-light">
         <div id="backNav" class="container-fluid">
-          <a class="navbar-brand" href="#" data-uri="/">Logiciel de Produits GSK</a>
+          <a class="navbar-brand" href="/" data-uri="/">Logiciel de Produits GSK</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -31,9 +31,10 @@ const Navbar = () => {
                 <a class="nav-link colorNav" aria-current="page" href="#" data-uri="/">Accueil</a>
               </li>
               <li class="nav-item">
-                <a id="buttonCanvas" class="colorNav" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                  Ajouter un produit
-                </a>
+                <a class="nav-link colorNav" aria-current="page" href="#" data-uri="/add">ajouter un produit</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link colorNav" aria-current="page" href="#" data-uri="/delete">Supprimer un produit</a>
               </li>                       
             </ul>
           </div>

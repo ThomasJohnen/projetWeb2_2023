@@ -17,9 +17,6 @@ const homePage = `
                 <div class="modal-body">
                     <p id="modalContent"></p> <!-- Ajoutez un élément où vous afficherez le contenu dynamique -->
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
             </div>
         </div>
     </div>
@@ -63,7 +60,7 @@ async function displayProduit(){
                         <img src="${minus}">
                     </a> 
                     <a type="button" class="btModalEdit" data-bs-toggle="modal" data-bs-target="#modalProduit" data-id="${produit.id}">
-                        <img src="${edit}">
+                        <img  src="${edit}">
                     </a>
                 </div>
             </div>`;

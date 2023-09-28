@@ -1,6 +1,6 @@
 import HomePage from '../Pages/HomePage';
-import DeletePage from '../DeletePage/deletePage';
-import AddPage from '../AddPage/addPage';
+import DeletePage from '../Pages/deletePage';
+import AddPage from '../Pages/addPage';
 
 
 

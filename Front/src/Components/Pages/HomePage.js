@@ -1,5 +1,5 @@
 import { clearPage } from "../../utils/render";
-import { displayProduit } from "../Models/product";
+import displayProduit from "../Models/product";
 
 
 // le modal et la balise enveloppante qui sera dans le main
